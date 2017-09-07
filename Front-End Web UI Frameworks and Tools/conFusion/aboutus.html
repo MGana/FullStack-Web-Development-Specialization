@@ -23,7 +23,10 @@
     <![endif]-->
 </head>
 
-<body>
+<!-- To introduce the Scrollspy, I am going to go into the body and introduce the data target and the data offset here. -->  
+<!-- This prepares the body to activate the scrollspy using the data-spy="scroll" attribute. The target of this is set using data-target="#myScrollspy" thus specifying that the element with the id myScrollspy will act as the scrollspy.-->
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
+    
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -82,155 +85,192 @@
     </header>
 
     <div class="container">
-        <div >
-            <div>
-                <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active">About Us</li>
-                </ol>
-            </div>
-            <div>
-               <h3>About Us</h3>
-               <hr>
-            </div>
-        </div>
-        
-        <div class="row row-content">
-            <div class="col-xs-12 col-sm-8">
-                <h2>Our History</h2>
-                <p>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
-                <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
-                <div class="well">
-                    <blockquote>
-                        <p>You better cut the pizza in four pieces because
-                            I'm not hungry enough to eat six.</p>
-                        <footer>Yogi Berra,
-                          <cite>The Wit and Wisdom of Yogi Berra,
-                            P. Pepe, Diversion Books, 2014</cite>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Facts At a Glance</h3>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10">
+            <!-- we will nest the entire content of the web page into a row first, and move the existing content into a column with a column class of col-sm-10. The remaining two columns will be left for the nav.-->    
+                <div class="row" >
+                    <div class="col-xs-12">
+                        <ul class="breadcrumb">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">About Us</li>
+                        </ul>
                     </div>
-                    <div class="panel-body">
-                        <dl class="dl-horizontal">
-                            <dt>Started</dt>
-                            <dd>3 Feb. 2013</dd>
-                            <dt>Major Stake Holder</dt>
-                            <dd>HK Fine Foods Inc.</dd>
-                            <dt>Last Year's Turnover</dt>
-                            <dd>$1,250,375</dd>
-                            <dt>Employees</dt>
-                            <dd>40</dd>
-                       </dl>
+                    <div class="col-xs-12">
+                       <h3>About Us</h3>
+                       <hr>
                     </div>
                 </div>
-            </div>    
-            <div>
-                <p style="padding:20px;"></p>
-            </div>
-        </div>
+
+                <div id="history" class="row row-content">
+                    <div class="col-xs-12 col-sm-6 col-lg-8">
+                        <h2>Our History</h2>
+                        <p>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
+                        <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
+                        <div class="well">
+                            <blockquote>
+                                <p>You better cut the pizza in four pieces because
+                                    I'm not hungry enough to eat six.</p>
+                                <footer>Yogi Berra,
+                                  <cite>The Wit and Wisdom of Yogi Berra,
+                                    P. Pepe, Diversion Books, 2014</cite>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-4 ">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Facts At a Glance</h3>
+                            </div>
+                            <div class="panel-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Started</dt>
+                                    <dd>3 Feb. 2013</dd>
+                                    <dt>Major Stake Holder</dt>
+                                    <dd>HK Fine Foods Inc.</dd>
+                                    <dt>Last Year's Turnover</dt>
+                                    <dd>$1,250,375</dd>
+                                    <dt>Employees</dt>
+                                    <dd>40</dd>
+                               </dl>
+                            </div>
+                        </div>
+                    </div>    
+                    <div>
+                        <p style="padding:20px;"></p>
+                    </div>
+                </div>
 
 
-        <div class="row row-content">
-            <div class="col-xs-12 col-sm-9">
-                <h2>Corporate Leadership</h2>
+                <div id="corporate" class="row row-content">
+                    <div class="col-xs-12">
+                        <h2>Corporate Leadership</h2>
+
+                        <!-- I have now replaced the tab content with a div with the class panel group. 
+                        So anything inside, all the panels inside will now form a group of panels and such that the spacing between them 
+                        is adjusted appropriately. And we can then apply the accordion to this group of panels here. -->
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingPeter">
+                                    <h3 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#peter" aria-expanded="true" aria-controls="peter">
+                                        Peter Pan <small>Chief Epicurious Officer</small></a>
+                                    </h3>
+                                </div>
+                                <div role="tabpanel" class="panel-collapse collapse in" id="peter"    aria-labelledby="headingPeter">
+                                    <div class="panel-body">
+                                        <p>Our CEO, Peter, credits his hardworking East Asian immigrant parents who undertook the arduous journey to the shores of America with the intention of giving their children the best future. His mother's wizardy in the kitchen whipping up the tastiest dishes with whatever is available inexpensively at the supermarket, was his first inspiration to create the fusion cuisines for which <em>The Frying Pan</em> became well known. He brings his zeal for fusion cuisines to this restaurant, pioneering cross-cultural culinary connections.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- in this panel, you can notice that I have the div for the panel and then after that, I have introduced the inner div for the panel heading. So this is the typical structure that we have seen for panels, where panel headings earlier. Now inside that, I am using the h3 class, which I have turned into a panel title. So this contains the name of the Cu. Now in order to turn this panel title in to a control for the accordion class so that when you click on the link there or the name of the CEO there, then the panel will open and close so the collapse feature will be introduced there. For that, I am introducing an A tag here. Now inside the A tag, I am applying the data toggle as collapse and the data-parent, I am pointing to the accordion, which I have introduced earlier, the panel group whose ID is accordion. So that's the data parent for it -->
+
+                            <!-- I have introduced another div there with the class panel collapse and collapse and in. Which means that this particular panel will be opened when the webpage is first rendered. So whatever content is there inside will be displayed on the web page when you first visit the web page. This panel can be turned on and off by using the collapse class there.-->
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingDanny">
+                                    <h3 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#danny" aria-expanded="false" aria-controls="danny">
+                                            Dhanasekaran Witherspoon <small>Chief Food Officer</small></a>
+                                    </h3>
+                                </div>
+                                <!-- in class not implemented here -->
+                                <div role="tabpanel" class="panel-collapse collapse" id="danny"    aria-labelledby="headingDanny">
+                                    <div class="panel-body">
+                                        <p>Our CFO, Danny, as he is affectionately referred to by his colleagues, comes from a long established family tradition in farming and produce. His experiences growing up on a farm in the Australian outback gave him great appreciation for varieties of food sources. As he puts it in his own words, <em>Everything that runs, wins, and everything that stays, pays!</em></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingAgumbe">
+                                    <h3 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#agumbe" aria-expanded="false" aria-controls="agumbe">
+                                            Agumbe Tang <small>Chief Taste Officer</small></a>
+                                    </h3>
+                                </div>
+                                <div role="tabpanel" class="panel-collapse collapse" id="agumbe"    aria-labelledby="headingAgumbe">
+                                    <div class="panel-body">
+                                        <p>Blessed with the most discerning gustatory sense, Agumbe, our CFO, personally ensures that every dish that we serve meets his exacting tastes. Our chefs dread the tongue lashing that ensues if their dish does not meet his exacting standards. He lives by his motto, <em>You click only if you survive my lick.</em></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingAlberto">
+                                    <h3 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#alberto" aria-expanded="false" aria-controls="alberto">
+                                            Alberto Somayya <small>Executive Chef</small></a>
+                                    </h3>
+                                </div>
+                                <div role="tabpanel" class="panel-collapse collapse" id="alberto"    aria-labelledby="headingAlberto">
+                                    <div class="panel-body">
+                                        <p>Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, <em>Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!</em></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+               </div>
+               <div id="facts" class="row row-content">
+                    <div class="col-xs-12">
+                        <h2>Facts &amp; Figures</h2>
+                        <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>&nbsp;</td>
+                                <th>2013</th>
+                                <th>2014</th>
+                                <th>2015</th>
+                            </tr>
+                            <tr>
+                                <th>Employees</th>
+                                <td>15</td>
+                                <td>30</td>
+                                <td>40</td>
+                            </tr>
+                            <tr>
+                                <th>Guests Served</th>
+                                <td>15000</td>
+                                <td>45000</td>
+                                <td>100,000</td>
+                            </tr>
+                            <tr>
+                                <th>Special Events</th>
+                                <td>3</td>
+                                <td>20</td>
+                                <td>45</td>
+                            </tr>
+                            <tr>
+                                <th>Annual Turnover</th>
+                                <td>$251,325</td>
+                                <td>$1,250,375</td>
+                                <td>~$3,000,000</td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+
+               </div>
                 
-                <!-- there are specifying that the data toggle is a tab, so this way we know that we are activating the JavaScript component that enables support to the tab navigation. -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
-                    <a href="#peter" aria-controls="peter"
-                     role="tab" data-toggle="tab">Peter Pan, CEO</a></li>
-                    <li role="presentation"><a href="#danny"
-                     aria-controls="danny" role="tab"
-                     data-toggle="tab">Danny Witherspoon, CFO</a></li>
-                    <li role="presentation"><a href="#agumbe"
-                     aria-controls="agumbe" role="tab"
-                     data-toggle="tab">Agumbe Tang, CTO</a></li>
-                    <li role="presentation"><a href="#alberto"
-                     aria-controls="alberto" role="tab"
-                     data-toggle="tab">Alberto Somayya, Exec. Chef</a></li>
+            </div>   
+            
+            
+            <!-- here you see that I have now a nav class remember that the scroll spy works only when you use it on a nav element there. So here I have a nav class for which I have introduced the classes as hidden access, meaning that this nav element is going to be hidden when I am viewing the webpage on an extra small screen. So I don't need the scroll spire on extra small screens. For small to large screens, this Scrollspy is going to occupy two columns. So recall that we just created two empty columns on the right side, so that is what I'm going to make use of for the Scrollspy-->
+            <nav class="hidden-xs col-sm-2" id="myScrollspy">
+                <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="400">
+                    <li><a href="#history">Our History</a></li>
+                    <li><a href="#corporate">Corporate</a></li>
+                    <li><a href="#facts">Facts</a></li>
                 </ul>
-                
-                <div class="tab-content">
-                    <!--for this class, aside from tab-pane I have also specified the fade and the in. 
-                    fade meaning that when you transition to this tab, then this tab will fade in,. 
-                    So we introduce some transitions into the web page so that when you're navigating to different parts, 
-                    the navigation, the movement looks fluid on the screen.
-                    The in part is to identify that this tab should be left open when the user first navigates to this part of the webpage.-->
-                    <div role="tabpanel" class="tab-pane fade in active" id="peter">
-                        <h3>Peter Pan <small>Chief Epicurious Officer</small></h3>
-                        <p>Our CEO, Peter, credits his hardworking East Asian immigrant parents who undertook the arduous journey to the shores of America with the intention of giving their children the best future. His mother's wizardy in the kitchen whipping up the tastiest dishes with whatever is available inexpensively at the supermarket, was his first inspiration to create the fusion cuisines for which <em>The Frying Pan</em> became well known. He brings his zeal for fusion cuisines to this restaurant, pioneering cross-cultural culinary connections.</p>
-                    </div>
-                    <!-- Only the first tab pane will have the in and active classes specified 
-                    to indicate that the content should be visible on the web page by default -->
-                    <div role="tabpanel" class="tab-pane fade" id="danny">
-                        <h3>Dhanasekaran Witherspoon <small>Chief Food Officer</small></h3>
-                        <p>Our CFO, Danny, as he is affectionately referred to by his colleagues, comes from a long established family tradition in farming and produce. His experiences growing up on a farm in the Australian outback gave him great appreciation for varieties of food sources. As he puts it in his own words, <em>Everything that runs, wins, and everything that stays, pays!</em></p>
-                    </div>    
-                    <div role="tabpanel" class="tab-pane fade" id="agumbe">    
-                        <h3>Agumbe Tang <small>Chief Taste Officer</small></h3>
-                        <p>Blessed with the most discerning gustatory sense, Agumbe, our CFO, personally ensures that every dish that we serve meets his exacting tastes. Our chefs dread the tongue lashing that ensues if their dish does not meet his exacting standards. He lives by his motto, <em>You click only if you survive my lick.</em></p>
-                    </div>    
-                    <div role="tabpanel" class="tab-pane fade" id="alberto">    
-                        <h3>Alberto Somayya <small>Executive Chef</small></h3>
-                        <p>Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, <em>Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!</em></p>
-                    </div>
-                </div>
-            </div>
-             <div class="col-xs-12 col-sm-3">
-                <p style="padding:20px;"></p>
-            </div>
-       </div>
-       <div class="row row-content">
-            <div class="col-xs-12 col-sm-9">
-                <h2>Facts &amp; Figures</h2>
-                <div class="table-responsive">
-                <table class="table table-striped">
-                    <tr>
-                        <td>&nbsp;</td>
-                        <th>2013</th>
-                        <th>2014</th>
-                        <th>2015</th>
-                    </tr>
-                    <tr>
-                        <th>Employees</th>
-                        <td>15</td>
-                        <td>30</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <th>Guests Served</th>
-                        <td>15000</td>
-                        <td>45000</td>
-                        <td>100,000</td>
-                    </tr>
-                    <tr>
-                        <th>Special Events</th>
-                        <td>3</td>
-                        <td>20</td>
-                        <td>45</td>
-                    </tr>
-                    <tr>
-                        <th>Annual Turnover</th>
-                        <td>$251,325</td>
-                        <td>$1,250,375</td>
-                        <td>~$3,000,000</td>
-                    </tr>
-                </table>
-                </div>
-            </div>
-             <div class="col-xs-12 col-sm-3">
-                <p style="padding:20px;"></p>
-            </div>
-       </div> 
-
+            </nav>
+            
+            
+        </div>        
     </div>
 
+    
     <footer class="row-footer">
         <div class="container">
             <div class="row">             
