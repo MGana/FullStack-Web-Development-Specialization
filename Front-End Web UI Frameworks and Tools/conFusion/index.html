@@ -71,28 +71,48 @@
                     </li>
                     <li><a href="contactus.html"><i class="fa fa-envelope-o"></i> Contact</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" style="margin-top:10px">
-                    <li>
-                        <form class="form-inline" role="form">
-                            <div class="form-group">
-                                <label class="sr-only" for="email">Email address</label>
-                                <input type="email" class="form-control input-sm" name="email" id="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="email">Password</label>
-                                <input type="password" class="form-control input-sm" name="password" id="password" placeholder="Password">
-                            </div>
-                            <div class="checkbox">
-                              <label style="color:#FFFFFF"><input type="checkbox" style="vertical-align:top"> Remember me</label>
-                            </div>
-                            <button type="submit" class="btn btn-info btn-sm">Sign In</button>
-                        </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a data-toggle="modal" data-target="#loginModal">
+                        <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>   
     
+    <!--  I have an outer div, which I have given an id as the loginModal and the corresponding class as modal with the fade class also. Meaning that when the modal is dismissed it will fade. And when the modal is invoked, it will fade in -->
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login </h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="email">Email address</label>
+                        <input type="email" class="form-control input-sm" name="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="email">Password</label>
+                        <input type="password" class="form-control input-sm" name="password" id="password" placeholder="Password">
+                    </div>
+                    <div class="checkbox">
+                      <label><input type="checkbox" style="vertical-align:top"> Remember me</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info btn-sm">Sign In</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                    </div>    
+                </form>
+
+            </div>
+        </div>
+        </div>
+    </div>
     
 
     <header class="jumbotron">
@@ -113,7 +133,10 @@
                 <div class="col-xs-12 col-sm-2">
                     <p style="padding:25%;"></p>
                     <div class="text-center">
-                        <a type="button" class="btn btn-large btn-warning btn-block" href="#reservationTable" >Reserve Table</a>
+                        <!-- adding a tooltip -->
+                        <a type="button" class="btn btn-warning btn-block"
+                        data-toggle="tooltip" title="Or Call us at +852 12345678"
+                        data-placement="bottom" href="#reservationTable">Reserve Table</a>
                     </div>
                 </div>
             </div>
@@ -316,6 +339,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <!-- The tooltip needs to be activated by adding a small Javascript code to the bottom of the page -->
+    <script>
+        $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+         });
+    </script>
 
 
 </body>
