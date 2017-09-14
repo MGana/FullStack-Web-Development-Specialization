@@ -79,3 +79,20 @@ to give a clean tab like appearance.*/
 .affix {
     top:100px;
 }
+
+
+/*Adding CSS Classes to support carousel*/
+/*Dark indigo color for the background, same as navbar color*/
+.carousel {
+    background:#1A237E;
+}
+.carousel .item {
+  height: 300px;
+}
+/*The image will be in the left side*/
+.item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 300px;
+}
