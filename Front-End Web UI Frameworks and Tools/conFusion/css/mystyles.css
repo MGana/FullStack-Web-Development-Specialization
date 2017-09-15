@@ -96,3 +96,10 @@ to give a clean tab like appearance.*/
     left: 0;
     min-height: 300px;
 }
+
+/*To position carousel control buttons correctly: will move the button group to the bottom right corner of the carousel*/
+#carouselButtons {
+    right:0px;
+    position: absolute;
+    bottom: 0px;
+}
