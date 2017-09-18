@@ -74,7 +74,7 @@
                     <li><a href="contactus.html"><i class="fa fa-envelope-o"></i> Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal">
+                    <li><a id="loginButton">
                         <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 </ul>
@@ -222,7 +222,7 @@
                     <p style="padding:25%;"></p>
                     <div class="text-center">
                         <!-- remove the tooltip to support the modal: A single button can support only one Javascript plugin via the data-* attributes -->
-                        <a type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#reserveTableModal">Reserve Table</a>
+                        <a type="button" class="btn btn-warning btn-block" id="reserveTableButton">Reserve Table</a>
                     </div>
                 </div>
             </div>
@@ -448,6 +448,16 @@
                 $("#mycarousel").carousel('cycle');
             });
         });
+        
+        $("#reserveTableButton").click(function() {
+            $('#reserveTableModal').modal('toggle')
+        });
+
+        $("#loginButton").click(function() {
+            $('#loginModal').modal('toggle')
+        });
+        
+        
     </script>
 
 
