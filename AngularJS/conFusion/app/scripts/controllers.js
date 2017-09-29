@@ -11,11 +11,18 @@ angular.module('confusionApp')
             //$scope.dishes= menuFactory.getDishes();
             //handle the asynchonous behaviour: start  by putting the service scope.dishes to an empty object. And then when the value returns,  assign it to that dishes object. 
             
-            $scope.dishes= [];
+            $scope.showMenu = false;
+            $scope.message = "Loading ...";
+            $scope.dishes= {};
+            
             menuFactory.getDishes()
             .then(
                 function(response) {
                     $scope.dishes = response.data;
+                    $scope.showMenu = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
                 }
             );
             
@@ -81,11 +88,16 @@ angular.module('confusionApp')
         .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
         
             $scope.dish = {};
+            $scope.showDish = false;
+            $scope.message="Loading ...";
             menuFactory.getDish(parseInt($stateParams.id,10))
             .then(
                 function(response){
                     $scope.dish = response.data;
                     $scope.showDish=true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
                 }
             );
             //async callback function
@@ -116,11 +128,17 @@ angular.module('confusionApp')
             
             //$scope.featuredDish= menuFactory.getDish(0);
             $scope.featuredDish = {};
+            $scope.showDish = false;
+            $scope.message="Loading ...";
+
             menuFactory.getDish(0)
             .then(
                 function(response){
                     $scope.featuredDish = response.data;
                     $scope.showDish = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
                 }
             );
             
