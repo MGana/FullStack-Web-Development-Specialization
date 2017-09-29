@@ -8,7 +8,17 @@ angular.module('confusionApp')
             $scope.filtText = '';
             $scope.showDetails = false;
 
-            $scope.dishes= menuFactory.getDishes();
+            //$scope.dishes= menuFactory.getDishes();
+            //handle the asynchonous behaviour: start  by putting the service scope.dishes to an empty object. And then when the value returns,  assign it to that dishes object. 
+            
+            $scope.dishes= [];
+            menuFactory.getDishes()
+            .then(
+                function(response) {
+                    $scope.dishes = response.data;
+                }
+            );
+            
 
                         
             $scope.select = function(setTab) {
@@ -69,10 +79,16 @@ angular.module('confusionApp')
         }])
 
         .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
-
-            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
-            
-            $scope.dish = dish;
+        
+            $scope.dish = {};
+            menuFactory.getDish(parseInt($stateParams.id,10))
+            .then(
+                function(response){
+                    $scope.dish = response.data;
+                    $scope.showDish=true;
+                }
+            );
+            //async callback function
             
         }])
 
@@ -98,7 +114,15 @@ angular.module('confusionApp')
             
             $scope.promotion = menuFactory.getPromotion(0);
             
-            $scope.featuredDish= menuFactory.getDish(0);
+            //$scope.featuredDish= menuFactory.getDish(0);
+            $scope.featuredDish = {};
+            menuFactory.getDish(0)
+            .then(
+                function(response){
+                    $scope.featuredDish = response.data;
+                    $scope.showDish = true;
+                }
+            );
             
             $scope.leader= corporateFactory.getLeader(3);
                        
