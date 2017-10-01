@@ -9,11 +9,18 @@ angular.module('confusionApp')
             $scope.showDetails = false;
 
 
-            //chnage to true as I am not handling errors at this stage
-            $scope.showMenu = true;
+            $scope.showMenu = false;
             $scope.message = "Loading ...";
-            $scope.dishes = menuFactory.getDishes().query();
-            // Now, the query will return the entire array from that particular API resource. by default, before the Resource returns, The scope dishes will be equated to a empty array, and then once the response is obtained, then the scope dishes will be loaded with the data obtained from the server. 
+            
+            //the way the success function one works with query is that the response that we get is the actual data. It doesn't contain the status message and the status code and the other header information. So I can directly assign dishes to response, and then set the showMenu to true.
+            menuFactory.getDishes().query(
+                function(response) {
+                    $scope.dishes = response;
+                    $scope.showMenu = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                });
 
                         
             $scope.select = function(setTab) {
@@ -76,28 +83,37 @@ angular.module('confusionApp')
         .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
         
             $scope.dish = {};
-            $scope.showDish = true;
+            $scope.showDish = false;
             $scope.message="Loading ...";
-            
-            $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)});
-            //async callback function
+            $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
+            .$promise.then(
+                function(response){
+                    $scope.dish = response;
+                    $scope.showDish = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                }
+            );
             
         }])
 
-        .controller('DishCommentController', ['$scope', function($scope) {
+        .controller('DishCommentController', ['$scope', 'menuFactory', function($scope,menuFactory) {
             
-            $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+            $scope.yourComment = {rating:5, comment:"", author:"", date:""};
             
             $scope.submitComment = function () {
                 
-                $scope.mycomment.date = new Date().toISOString();
-                console.log($scope.mycomment);
+                $scope.yourComment.date = new Date().toISOString();
+                console.log($scope.yourComment);
                 
-                $scope.dish.comments.push($scope.mycomment);
+                $scope.dish.comments.push($scope.yourComment);
+                
+                menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
                 
                 $scope.commentForm.$setPristine();
                 
-                $scope.mycomment = {rating:5, comment:"", author:"", date:""};
+                $scope.yourComment = {rating:5, comment:"", author:"", date:""};
             }
         }])
 
@@ -106,11 +122,21 @@ angular.module('confusionApp')
             
             $scope.promotion = menuFactory.getPromotion(0);
             
-            
-            $scope.showDish = true;
-            $scope.message="Loading ...";
 
-            $scope.featuredDish = menuFactory.getDishes().get({id:0});
+            $scope.showDish = false;
+            $scope.message="Loading ...";
+            
+            //$scope.featuredDish = menuFactory.getDishes().get({id:0});
+            $scope.featuredDish = menuFactory.getDishes().get({id:0})
+            .$promise.then(
+                function(response){
+                    $scope.featuredDish = response;
+                    $scope.showDish = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                }
+            );
             
             $scope.leader= corporateFactory.getLeader(3);
                        
