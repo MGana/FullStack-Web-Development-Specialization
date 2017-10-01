@@ -8,24 +8,12 @@ angular.module('confusionApp')
             $scope.filtText = '';
             $scope.showDetails = false;
 
-            //$scope.dishes= menuFactory.getDishes();
-            //handle the asynchonous behaviour: start  by putting the service scope.dishes to an empty object. And then when the value returns,  assign it to that dishes object. 
-            
-            $scope.showMenu = false;
+
+            //chnage to true as I am not handling errors at this stage
+            $scope.showMenu = true;
             $scope.message = "Loading ...";
-            $scope.dishes= {};
-            
-            menuFactory.getDishes()
-            .then(
-                function(response) {
-                    $scope.dishes = response.data;
-                    $scope.showMenu = true;
-                },
-                function(response) {
-                    $scope.message = "Error: "+response.status + " " + response.statusText;
-                }
-            );
-            
+            $scope.dishes = menuFactory.getDishes().query();
+            // Now, the query will return the entire array from that particular API resource. by default, before the Resource returns, The scope dishes will be equated to a empty array, and then once the response is obtained, then the scope dishes will be loaded with the data obtained from the server. 
 
                         
             $scope.select = function(setTab) {
@@ -88,18 +76,10 @@ angular.module('confusionApp')
         .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
         
             $scope.dish = {};
-            $scope.showDish = false;
+            $scope.showDish = true;
             $scope.message="Loading ...";
-            menuFactory.getDish(parseInt($stateParams.id,10))
-            .then(
-                function(response){
-                    $scope.dish = response.data;
-                    $scope.showDish=true;
-                },
-                function(response) {
-                    $scope.message = "Error: "+response.status + " " + response.statusText;
-                }
-            );
+            
+            $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)});
             //async callback function
             
         }])
@@ -126,21 +106,11 @@ angular.module('confusionApp')
             
             $scope.promotion = menuFactory.getPromotion(0);
             
-            //$scope.featuredDish= menuFactory.getDish(0);
-            $scope.featuredDish = {};
-            $scope.showDish = false;
+            
+            $scope.showDish = true;
             $scope.message="Loading ...";
 
-            menuFactory.getDish(0)
-            .then(
-                function(response){
-                    $scope.featuredDish = response.data;
-                    $scope.showDish = true;
-                },
-                function(response) {
-                    $scope.message = "Error: "+response.status + " " + response.statusText;
-                }
-            );
+            $scope.featuredDish = menuFactory.getDishes().get({id:0});
             
             $scope.leader= corporateFactory.getLeader(3);
                        

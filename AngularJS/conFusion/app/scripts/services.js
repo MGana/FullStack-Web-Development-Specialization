@@ -4,7 +4,7 @@ angular.module('confusionApp')
 
         .constant("baseURL","http://localhost:3000/")
 
-        .service('menuFactory', ['$http', 'baseURL', function($http,baseURL) {
+        .service('menuFactory', ['$resource', 'baseURL', function($resource,baseURL) {
     
 
             var promotions = [
@@ -20,19 +20,15 @@ angular.module('confusionApp')
             ];
     
             
-            //this.getDishes = function(){return dishes;};
+            
             this.getDishes = function(){
 
-                return $http.get(baseURL+"dishes");
+                return $resource(baseURL+"dishes/:id",null,  {'update':{method:'PUT' }});
 
             };
             
-            //this.getDish = function (index) {return dishes[index];};
-            this.getDish = function (index) {
-
-                return $http.get(baseURL+"dishes/"+index);
-
-            };
+            //with getDishes, if I do a query on that it'll return me the entire array. If I use get with an ID, then it will return me the specific item that I am looking for. So, I can go ahead and get rid of the getDish method it is not longer needed. 
+            
 
             // implement a function named getPromotion
             // that returns a selected promotion.
